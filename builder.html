@@ -1,0 +1,58 @@
+<!--
+Copyright 2011 Google Inc.
+#
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+#
+    http://www.apache.org/licenses/LICENSE-2.0
+#
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+    <head>
+        <title>Mandelbrot Builder</title>
+<script type="text/javascript">
+function build() {
+    var plot = document.getElementById("plot");
+    var url = "mandelbrot-animation?";
+    var inputs = document.getElementsByClassName('value')
+    for (var i=0; i < inputs.length; ++i) {
+        url += inputs[i].name + "=" + inputs[i].value + "&";
+    }
+    plot.src = url;
+}
+</script>
+    </head>
+    <body onload="build()">
+        <img style="float: right" id="plot" src=""/>
+        <div style="width: 20em">
+            <form>
+              <fieldset>
+                <legend>Mandelbrot&nbsp;Parameters:</legend>
+                Left: <input class="value" type="text" name="left" value="-2.68"/><br />
+                Right: <input class="value" type="text" name="right" value="1.32"/><br />
+                Top: <input class="value" type="text" name="top" value="-1.5"/><br />
+                Bottom: <input class="value" type="text" name="bottom" value="1.5"/><br />
+                Iterations: <input class="value" type="text" name="iterations" value="10"/><br />
+              </fieldset>
+              <fieldset>
+                <legend>Image&nbsp;Parameters:</legend>
+                Width: <input class="value" type="text" name="width" value="250"/><br />
+                Height: <input class="value" type="text" name="height" value="250"/><br />
+              </fieldset>
+              <fieldset>
+                <legend>Animation&nbsp;Parameters:</legend>
+                Start z0: <input class="value" type="text" name="start_z0" value="-3"/><br />
+                End z0: <input class="value" type="text" name="end_z0" value="3"/><br />
+                Step z0: <input class="value" type="text" name="step_z0" value="0.1"/><br />
+              </fieldset>
+            </form>
+        </div>
+        <button type="button" onclick="build()">Build Animated GIF!</button>
+    </body>
+</html>
