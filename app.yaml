@@ -1,0 +1,20 @@
+application: mandelbrot
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /mandelbrot-animation
+  script: mandelbrot_animation.application
+- url: /.*
+  static_files: builder.html
+  upload: builder.html
+
+libraries:
+- name: PIL
+  version: latest
+- name: numpy
+  version: latest
+- name: webapp2
+  version: latest
