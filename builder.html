@@ -14,45 +14,55 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <html>
-    <head>
-        <title>Mandelbrot Builder</title>
-<script type="text/javascript">
-function build() {
-    var plot = document.getElementById("plot");
-    var url = "mandelbrot-animation?";
-    var inputs = document.getElementsByClassName('value')
-    for (var i=0; i < inputs.length; ++i) {
-        url += inputs[i].name + "=" + inputs[i].value + "&";
-    }
-    plot.src = url;
-}
-</script>
-    </head>
-    <body onload="build()">
-        <img style="float: right" id="plot" src=""/>
-        <div style="width: 20em">
-            <form>
-              <fieldset>
-                <legend>Mandelbrot&nbsp;Parameters:</legend>
-                Left: <input class="value" type="text" name="left" value="-2.68"/><br />
-                Right: <input class="value" type="text" name="right" value="1.32"/><br />
-                Top: <input class="value" type="text" name="top" value="-1.5"/><br />
-                Bottom: <input class="value" type="text" name="bottom" value="1.5"/><br />
-                Iterations: <input class="value" type="text" name="iterations" value="10"/><br />
-              </fieldset>
-              <fieldset>
-                <legend>Image&nbsp;Parameters:</legend>
-                Width: <input class="value" type="text" name="width" value="250"/><br />
-                Height: <input class="value" type="text" name="height" value="250"/><br />
-              </fieldset>
-              <fieldset>
-                <legend>Animation&nbsp;Parameters:</legend>
-                Start z0: <input class="value" type="text" name="start_z0" value="-3"/><br />
-                End z0: <input class="value" type="text" name="end_z0" value="3"/><br />
-                Step z0: <input class="value" type="text" name="step_z0" value="0.1"/><br />
-              </fieldset>
-            </form>
-        </div>
-        <button type="button" onclick="build()">Build Animated GIF!</button>
-    </body>
+  <head>
+    <title>Mandelbrot Builder</title>
+    <script type="text/javascript">
+      function build() {
+        var plot = document.getElementById("plot");
+        var url = "mandelbrot-animation?";
+        var inputs = document.getElementsByClassName('value')
+        for (var i=0; i < inputs.length; ++i) {
+          url += inputs[i].name + "=" + inputs[i].value + "&";
+        }
+        plot.src = url;
+      }
+
+      function image_loaded() {
+        document.getElementById("plot").style.visibility = 'visible';
+        document.getElementById("loading").style.display = 'none';
+      }
+    </script>
+  </head>
+  <body onload="build()">
+    <div style="float: right">
+      <div id="loading" style="border: 1px solid #ccc; padding: 20px; color: blue; font-size: 200%;">
+        Loading image. Please wait...
+      </div>
+      <img id="plot" style="visibility: hidden;" src="" onload="image_loaded()" src=""/>
+    </div>
+    <div style="width: 20em">
+      <form>
+        <fieldset>
+          <legend>Mandelbrot&nbsp;Parameters:</legend>
+          Left: <input class="value" type="text" name="left" value="-2.68"/><br />
+          Right: <input class="value" type="text" name="right" value="1.32"/><br />
+          Top: <input class="value" type="text" name="top" value="-1.5"/><br />
+          Bottom: <input class="value" type="text" name="bottom" value="1.5"/><br />
+          Iterations: <input class="value" type="text" name="iterations" value="10"/><br />
+        </fieldset>
+        <fieldset>
+          <legend>Image&nbsp;Parameters:</legend>
+          Width: <input class="value" type="text" name="width" value="250"/><br />
+          Height: <input class="value" type="text" name="height" value="250"/><br />
+        </fieldset>
+        <fieldset>
+          <legend>Animation&nbsp;Parameters:</legend>
+          Start z0: <input class="value" type="text" name="start_z0" value="-3"/><br />
+          End z0: <input class="value" type="text" name="end_z0" value="3"/><br />
+          Step z0: <input class="value" type="text" name="step_z0" value="0.1"/><br />
+        </fieldset>
+      </form>
+    </div>
+    <button type="button" onclick="build()">Build Animated GIF!</button>
+  </body>
 </html>
