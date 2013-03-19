@@ -1,1 +1,12 @@
-Initial import in progress, see [this pull request](https://github.com/GoogleCloudPlatform/appengine-mandelbrot-python/pull/1) for more details.
+# appengine-mandelbrot-python
+
+A simple example app showing how to dynamically generate animated
+fractal GIF images using numpy and PIL python libraries.
+
+# Contributing changes
+
+* See CONTRIB.md
+
+## Licensing
+
+* See individual LICENSE files
